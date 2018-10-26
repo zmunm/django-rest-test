@@ -11,12 +11,10 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',  # Or use an alternate database backend.
-        'NAME': 'tmp.db',                       # Path to sqlite3 database file.
-        'USER': '',                      # Not used with sqlite3.
-        'PASSWORD': '',                  # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+        'ENGINE': 'django.db.backends.mysql',
+        'OPTIONS': {
+            'read_default_file': "libs/mysql.cnf",
+        }
     }
 }
 
@@ -134,6 +132,7 @@ INSTALLED_APPS = (
     'rest_framework',
     'rest_framework_swagger',
     'snippets',
+    'zmunm',
 )
 
 SECURE_SSL_REDIRECT = bool(int(os.environ.get('SECURE_SSL_REDIRECT', 0)))
