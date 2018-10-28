@@ -18,7 +18,7 @@ from rest_framework.routers import DefaultRouter
 from rest_framework_swagger.views import get_swagger_view
 
 from snippets import views
-from zmunm.views import test, Api
+from zmunm.views import test, Api, ProjectApi
 
 router = DefaultRouter()
 router.register(r'snippets', views.SnippetViewSet)
@@ -30,4 +30,5 @@ urlpatterns = [
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^test/', test),
     url(r'^api/', Api.as_view()),
+    url(r'^projects/((?P<id>.+)/)?$', ProjectApi.as_view()),
 ]
