@@ -18,6 +18,16 @@ DATABASES = {
     }
 }
 
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://ec2-52-79-199-102.ap-northeast-2.compute.amazonaws.com:6379/1", # 1번 DB
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    }
+}
+
 ALLOWED_HOSTS = ['*']
 
 # Local time zone for this installation. Choices can be found here:

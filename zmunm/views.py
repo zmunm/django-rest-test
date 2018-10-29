@@ -5,6 +5,7 @@ from rest_framework.generics import GenericAPIView
 from rest_framework import serializers, status
 from rest_framework import mixins
 from rest_framework.response import Response
+from django.core.cache import cache
 
 from zmunm.models import Language, Project
 
@@ -34,7 +35,7 @@ class Api(GenericAPIView, mixins.ListModelMixin):
 
 
 class ProjectApi(GenericAPIView, mixins.ListModelMixin):
-    queryset = Project.objects.all()
+    queryset = cache.get_or_set('posts', Project.objects.all())
     serializer_class = ProjectSerializer
 
     def get(self, request, *args, **kwargs):
