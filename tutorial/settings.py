@@ -21,7 +21,7 @@ DATABASES = {
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://ec2-52-79-199-102.ap-northeast-2.compute.amazonaws.com:6379/1", # 1번 DB
+        "LOCATION": "redis://ec2-13-124-115-46.ap-northeast-2.compute.amazonaws.com:6379/1", # 1번 DB
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
