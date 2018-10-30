@@ -18,16 +18,17 @@ from rest_framework.routers import DefaultRouter
 from rest_framework_swagger.views import get_swagger_view
 
 from snippets import views
-
+from zmunm.views import test, Api, ProjectApi
 
 router = DefaultRouter()
 router.register(r'snippets', views.SnippetViewSet)
 router.register(r'users', views.UserViewSet)
 
-schema_view = get_swagger_view(title='Snippets API')
-
 urlpatterns = [
-    url('^$', schema_view),
+    url('^$', get_swagger_view(title='Snippets API')),
     url(r'^', include(router.urls)),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^test/', test),
+    url(r'^api/', Api.as_view()),
+    url(r'^projects/((?P<id>.+)/)?$', ProjectApi.as_view()),
 ]
