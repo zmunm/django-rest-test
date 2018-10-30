@@ -2,8 +2,11 @@ FROM python:3.7
 ENV PYTHONUNBUFFERED 1
 RUN mkdir /code
 WORKDIR /code
-ADD Pipfile /code/
-ADD Pipfile.lock /code/
+ADD . /code/
 RUN pip install pipenv
 RUN pipenv install
-ADD . /code/
+RUN chmod +x manage.py
+RUN pipenv run python manage.py makemigrations
+RUN pipenv run python manage.py migrate
+EXPOSE 8000
+CMD pipenv run python manage.py runserver 0.0.0.0:8000
