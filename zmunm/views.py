@@ -41,7 +41,7 @@ class ProjectApi(GenericAPIView, mixins.ListModelMixin):
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
 
-    def post(self, request):
+    def post(self, request, *args, **kwargs):
         serializer = ProjectSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
